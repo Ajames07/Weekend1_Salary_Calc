@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,18 +11,34 @@
     <script src="vendors/jquery-3.3.1.min.js"></script>
     <script src="client.js"></script>
 </head>
-<body>
-    <div> Add Employee
-        <br>
-        <input type="text" id="firstNameIn" placeholder="First Name">
-        <input type="text" id="lastNameIn" placeholder="Last Name">
-        <input type="number" id="empIdIn" placeholder="Employee Id">
-        <input type="text" id="jobTitleIn" placeholder="Job Title">
-        <input type="number" id="salaryIn" placeholder="Annual Salary">
-        <button type="submit">Submit</button>
-    </div>
-    <table>
 
-    </table>
+<body>
+    <div class="container">
+        <div class="row">
+            <input type="text" id="firstNameIn" placeholder="First Name">
+            <input type="text" id="lastNameIn" placeholder="Last Name">
+            <input type="number" id="empIdIn" placeholder="Employee Id">
+            <input type="text" id="jobTitleIn" placeholder="Job Title">
+            <input type="number" id="salaryIn" placeholder="Annual Salary">
+            <button type="submit" id="addIn">Submit</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <table class"table">
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Employee ID</th>
+                    <th scope="col">Job Title</th>
+                    <th scope="col">Annual Salary</th>
+                </tr>
+                <tr class="valApp">
+                    
+                </tr>
+            </table>
+        </div>
+    </div>
 </body>
+
 </html>
