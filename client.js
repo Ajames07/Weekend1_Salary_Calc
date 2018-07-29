@@ -1,41 +1,58 @@
 console.log('in Js');
 
+let empList = [];
+
+let monthlySalary = 0;
+
+const totalMontlyCost = 20000;
+
 $('document').ready(readyNow);
 
-function readyNow(){
+class Employee {
+    constructor(firstName, lastName, employeeId, jobTitle, annualSalary) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.employeeId = employeeId;
+        this.jobTitle = jobTitle;
+        this.annualSalary = annualSalary;
+    } //end constructor
+} //end class Employee
+
+
+
+function readyNow() {
     console.log('in jQ');
-    $('#addIn').on('click',inputVals);
-}
+    $('#addIn').on('click', inputVals);
+} //end readyNow
 
-function inputVals(){
+function inputVals() {
+    //Store input value in array
     console.log('In inputVals');
-    //gather inputs
-    //append values to dom
-    let firstName = $('firstNameIn').val();
-    let lastName = $('lastNameIn').val();
-    let employeeId = $('empIdIn').val();
-    let jobTitle = $('jobTitleIn').val();
-    let salary = $('salaryIn').val();
-    console.log('Values gathered');
-    $('.valApp').append('<td>'+firstName+'</td>');
-    $('.valApp').append('<td>'+lastName+'</td>');
-    $('.valApp').append('<td>'+employeeId+'</td>');
-    $('.valApp').append('<td>'+jobTitle+'</td>');
-    $('.valApp').append('<td>'+salary+'</td>');
-    console.log('Values appended');
+    empDataInfo = new Employee($('#firstNameIn').val(), $('#lastNameIn').val(), $('#empIdIn').val(), $('#jobTitleIn').val(), $('#salaryIn').val());
+    empList.push(empDataInfo);
+    console.log(empList);
+    //empty input fields
+    $('#firstNameIn').val('');
+    $('#lastNameIn').val('');
+    $('#empIdIn').val('');
+    $('#jobTitleIn').val('');
+    $('#salaryIn').val('');
     salaryCalc();
-    $('firstNameIn').val('');
-    $('lastNameIn').val('');
-    $('empIdIn').val('');
-    $('jobTitleIn').val('');
-    $('salaryIn').val('');
-    console.log('Values emptied');
-    
-}
+} //end inputVals
 
-function salaryCalc(){
-    //take input values & calcuate
-    //if salary val excedes total budget
-    //turn highlight total cost red
+function salaryCalc() {
     console.log('In salary Calc');
-}
+    //take annual values & calcuate
+    for (let staff of empList) {
+         monthlySalary += (staff.annualSalary / 12);
+         //****monthlySalary is not properly adding up combined vals*****
+        console.log(monthlySalary);
+        if (monthlySalary <= totalMontlyCost) {
+            console.log('within budget');
+        } else if (monthlySalary > totalMontlyCost) {
+            console.log('expenses exceede budget');
+            //if salary val exceeds total budget
+            //highlight total cost red
+        }//end else if
+    }//end for of
+} //end salaryCalc
