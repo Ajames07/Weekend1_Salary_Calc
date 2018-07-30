@@ -1,3 +1,8 @@
-.table{
-    border:1px;
+h1{
+    font-family: cursive;
+    text-align: center;
+}
+
+body{
+    background-color: teal;
 }

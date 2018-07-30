@@ -22,7 +22,8 @@ class Employee {
 
 function readyNow() {
     console.log('in jQ');
-    $('#addIn').on('click', inputVals);
+    $('.addIn').on('click', inputVals);
+    $('.displayInfo').on('click','.removeEmp', deleteEmp);
 } //end readyNow
 
 function inputVals() {
@@ -31,6 +32,20 @@ function inputVals() {
     empDataInfo = new Employee($('#firstNameIn').val(), $('#lastNameIn').val(), $('#empIdIn').val(), $('#jobTitleIn').val(), $('#salaryIn').val());
     empList.push(empDataInfo);
     console.log(empList);
+    //append employees info to Dom
+    let dataDisplay = $('.displayInfo');
+    dataDisplay.empty();
+    for (let empInfo of empList) {
+        let inputInfo = $('<tr></tr>')
+        inputInfo.append(`<td>${empInfo.firstName}</td>
+        <td>${empInfo.lastName}</td>
+        <td>${empInfo.employeeId}</td>
+        <td>${empInfo.jobTitle}</td>
+        <td>${empInfo.annualSalary}</td>`);
+        //add remove button to each entery
+        inputInfo.append('<td><button class="btn btn-warning removeEmp">Remove</button></td>');
+        dataDisplay.append(inputInfo);
+    } //end for of
     //empty input fields
     $('#firstNameIn').val('');
     $('#lastNameIn').val('');
@@ -44,15 +59,34 @@ function salaryCalc() {
     console.log('In salary Calc');
     //take annual values & calcuate
     for (let staff of empList) {
-         monthlySalary += (staff.annualSalary / 12);
-         //****monthlySalary is not properly adding up combined vals*****
+        monthlySalary += (staff.annualSalary / 12);
         console.log(monthlySalary);
         if (monthlySalary <= totalMontlyCost) {
             console.log('within budget');
+            $('.monthlyCost').css('text-color', 'green');
         } else if (monthlySalary > totalMontlyCost) {
             console.log('expenses exceede budget');
             //if salary val exceeds total budget
             //highlight total cost red
-        }//end else if
-    }//end for of
+            $('.monthlyCost').css('background-color', 'red');
+        } //end else if
+    } //end for of
+    //append total monthlySalary to Dom
+    let monthlyCostData = $('.monthlyCost');
+    monthlyCostData.empty();
+    monthlyCostData.append(monthlySalary.toFixed(2));
 } //end salaryCalc
+
+function deleteEmp() {
+    //target DOM remove name
+    $(this).parent().parent().remove();
+    console.log('in deleteEmp');
+    for (let edit of empList) {
+        //subtract annualSalary from montlySalary
+        monthlySalary -= (edit.annualSalary / 12);
+        console.log(monthlySalary);
+    } //end for of
+    let deleteMonthlyCost = $('.monthlyCost');
+    deleteMonthlyCost.empty();
+    deleteMonthlyCost.append(monthlySalary.toFixed(2));
+} //end deleteEmp
