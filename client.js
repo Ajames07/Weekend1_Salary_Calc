@@ -1,5 +1,3 @@
-console.log('in Js');
-
 let empList = [];
 
 let monthlySalary = 0;
@@ -21,14 +19,12 @@ class Employee {
 
 
 function readyNow() {
-    console.log('in jQ');
     $('.addIn').on('click', inputVals);
     $('.displayInfo').on('click','.removeEmp', deleteEmp);
 } //end readyNow
 
 function inputVals() {
     //Store input value in array
-    console.log('In inputVals');
     empDataInfo = new Employee($('#firstNameIn').val(), $('#lastNameIn').val(), $('#empIdIn').val(), $('#jobTitleIn').val(), $('#salaryIn').val());
     empList.push(empDataInfo);
     console.log(empList);
@@ -36,12 +32,12 @@ function inputVals() {
     let dataDisplay = $('.displayInfo');
     dataDisplay.empty();
     for (let empInfo of empList) {
-        let inputInfo = $('<tr></tr>')
+        let inputInfo = $('<tr class="infoAp"></tr>')
         inputInfo.append(`<td>${empInfo.firstName}</td>
-        <td>${empInfo.lastName}</td>
-        <td>${empInfo.employeeId}</td>
-        <td>${empInfo.jobTitle}</td>
-        <td>${empInfo.annualSalary}</td>`);
+        <td class="inName">${empInfo.lastName}</td>
+        <td class="inLast">${empInfo.employeeId}</td>
+        <td class="inId">${empInfo.jobTitle}</td>
+        <td class="inSal">${empInfo.annualSalary}</td>`);
         //add remove button to each entery
         inputInfo.append('<td><button class="btn btn-warning removeEmp">Remove</button></td>');
         dataDisplay.append(inputInfo);
@@ -56,7 +52,6 @@ function inputVals() {
 } //end inputVals
 
 function salaryCalc() {
-    console.log('In salary Calc');
     //take annual values & calcuate
     for (let staff of empList) {
         monthlySalary += (staff.annualSalary / 12);
@@ -80,7 +75,6 @@ function salaryCalc() {
 function deleteEmp() {
     //target DOM remove name
     $(this).parent().parent().remove();
-    console.log('in deleteEmp');
     for (let edit of empList) {
         //subtract annualSalary from montlySalary
         monthlySalary -= (edit.annualSalary / 12);

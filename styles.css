@@ -6,3 +6,17 @@ h1{
 body{
     background-color: teal;
 }
+
+table, tr, th{
+    background-color: silver;
+    border: 1px solid black;
+}
+
+tbody{
+    border: 1px solid black;
+}
+
+.monthlyCost{
+    background-color: silver;
+    border: 1px solid black;
+}
